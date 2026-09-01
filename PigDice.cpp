@@ -16,6 +16,7 @@ void instructions();
 void addScore(GameState &gs);
 int diceRoll (int dice, GameState &ts);
 
+
 int main() {
     GameState my_game; // instantiate a GameState object
     //int dice;
