@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cstdlib>
 
 // Build your solution starting from this code.
 struct GameState {
@@ -29,7 +28,7 @@ void take_turn(GameState &g) {
     g.turn_count += 1;
     std::cout << "\nTURN " << g.turn_count
               << " - Game Score: " << g.game_score << std::endl;
-    while (g.turn_over == false){
+    while (!g.turn_over){
         std::cout << "roll or hold? (r/h): ";
         std::cin >> g.choice;
         if (g.choice == 'r') {
@@ -49,7 +48,6 @@ void play_game(GameState &g) {
         }
         else {
             g.turn_over = false;
-            g.score_this_turn = 0;
         }
     }
     std::cout << "\nYou finished with a final score of "
@@ -59,8 +57,7 @@ void play_game(GameState &g) {
 }
 
 void roll(GameState &g) {
-    int dieRoll;
-    dieRoll = rand() % 6 + 1;
+    int dieRoll = rand() % 6 + 1;
 
     if (dieRoll == 1) {
         g.turn_over = true;
