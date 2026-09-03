@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ctime>
 
 // Build your solution starting from this code.
 struct GameState {
@@ -34,8 +35,11 @@ void take_turn(GameState &g) {
         if (g.choice == 'r') {
             roll(g);
         }
-        if (g.choice == 'h'){
+        else if (g.choice == 'h'){
             hold(g);
+        }
+        else {
+            std::cout << "Invalid Input!" << std::endl;
         }
     }
 }
@@ -57,6 +61,7 @@ void play_game(GameState &g) {
 }
 
 void roll(GameState &g) {
+    srand(time(NULL));
     int dieRoll = rand() % 6 + 1;
 
     if (dieRoll == 1) {
