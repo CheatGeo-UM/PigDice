@@ -1,9 +1,6 @@
 #include <iostream>
-#include <ctime>
 #include <random>
 
-
-// Build your solution starting from this code.
 
 struct GameState {
     char choice;
@@ -63,9 +60,9 @@ public:
     }//This gets the number of sides for a die and makes it returnable for use later.
 };
 
-void play_game(GameState &g, Die &myDie);
-void take_turn(GameState &g, Die &myDie);
-void roll(GameState &g, Die &myDie);
+void play_game(GameState &g, Die &d);
+void take_turn(GameState &g, Die &d);
+void roll(GameState &g, Die &d);
 void hold (GameState &g);
 void display_rules();
 
@@ -79,7 +76,7 @@ int main() {
     return 0;
 }
 
-void take_turn(GameState &g, Die &myDie) {
+void take_turn(GameState &g, Die &d) {
     g.turn_count += 1;
     std::cout << "\nTURN " << g.turn_count
               << " - Game Score: " << g.game_score << std::endl;
@@ -87,7 +84,7 @@ void take_turn(GameState &g, Die &myDie) {
         std::cout << "roll or hold? (r/h): ";
         std::cin >> g.choice;
         if (g.choice == 'r') {
-            roll(g, myDie);
+            roll(g, d);
         }
         else if (g.choice == 'h'){
             hold(g);
@@ -98,9 +95,9 @@ void take_turn(GameState &g, Die &myDie) {
     }
 }
 
-void play_game(GameState &g, Die &myDie) {
+void play_game(GameState &g, Die &d) {
     while (!g.game_over) {
-        take_turn(g, myDie);
+        take_turn(g, d);
         if (g.game_score >= 20) {
             g.game_over = true;
         }
@@ -114,9 +111,8 @@ void play_game(GameState &g, Die &myDie) {
     std::cout << "Thanks for playing PIG Dice!";
 }
 
-void roll(GameState &g, Die &myDie) {
-    //srand(time(NULL));
-    int dieRoll = myDie.get_DieValue();
+void roll(GameState &g, Die &d) {
+    int dieRoll = d.get_DieValue();
     if (dieRoll == 1) {
         g.turn_over = true;
         g.score_this_turn = 0;
