@@ -1,6 +1,5 @@
 #include <iostream>
-#include <random>
-
+#include "DIE.h"
 
 struct GameState {
     char choice;
@@ -9,55 +8,6 @@ struct GameState {
     int score_this_turn = 0;
     bool game_over = false;
     bool turn_over = false;
-};
-
-class Die {
-private:
-    int m_dievalue;
-    int m_numOfSides;
-public:
-    Die() {
-        m_dievalue = 0;
-        m_numOfSides = 6;
-    }
-
-    void set_numOfSides(int numOfSides) {
-        switch (numOfSides) {
-            case 2:
-                m_numOfSides = 2;
-                break;
-            case 4:
-                m_numOfSides = 4;
-                break;
-            case 6:
-                m_numOfSides = 6;
-                break;
-            case 8:
-                m_numOfSides = 8;
-                break;
-            default:
-                m_numOfSides = 6;
-        }
-
-    } //This sets the die side amount, which will be used in a function made at a later date.
-
-    void set_DieValue() {
-        std::random_device rd;
-        std::mt19937 gen (rd());
-        std::uniform_int_distribution<int> dis (1,m_numOfSides);
-        m_dievalue = dis(gen);
-    }//This sets the value to be between 1 and the number of sides.
-
-    int get_DieValue() {
-        // rules for accessing the data
-        set_DieValue();
-        return m_dievalue;
-    } //This gets the random die value and makes it returnable for use later.
-
-    int get_NumOfSides() {
-
-        return m_numOfSides;
-    }//This gets the number of sides for a die and makes it returnable for use later.
 };
 
 void play_game(GameState &g, Die &d);
@@ -75,6 +25,7 @@ int main() {
     play_game(my_game, myDie); // call the play_game function and pass the GameState object
     return 0;
 }
+
 
 void take_turn(GameState &g, Die &d) {
     g.turn_count += 1;
