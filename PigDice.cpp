@@ -63,7 +63,7 @@ void play_game(GameState &g, Die &d) {
 }
 
 void roll(GameState &g, Die &d) {
-    int dieRoll = d.get_DieValue();
+    int dieRoll = d.getDieValue();
     if (dieRoll == 1) {
         g.turn_over = true;
         g.score_this_turn = 0;
