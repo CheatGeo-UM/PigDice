@@ -7,16 +7,19 @@ private:
     int m_turnCount;
     int m_scoreThisTurn;
     bool m_turnOver;
-    char m_Choice;
+    char m_choice;
     Die m_myDie;
 public:
     Turn();
     //Turn(&);
+
     void takeTurn();
-    int getScoreThisTurn();
+    int getScoreThisTurn() const;
     void resetTurnOver();
     int getTurnCount();
-    void resetGameOver();
+    void resetScoreThisTurn();
+private:
+    void roll();
 
 };
 
