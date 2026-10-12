@@ -14,7 +14,7 @@ Turn::Turn() {
 
 void Turn::takeTurn() {
     m_turnCount += 1;
-    std::cout << "\nTURN " << m_turnCount;
+    std::cout << "\nTURN " << m_turnCount  << " - Game Score: " << std::endl;
               // ISSUE: Turn object "part" needs access to m_gameScore in "whole"
     while (!m_turnOver){
         std::cout << "roll or hold? (r/h): ";
@@ -24,6 +24,7 @@ void Turn::takeTurn() {
         }
         else if (m_choice == 'h'){
             m_turnOver = true;
+            std::cout << "Score Banked This Turn: " << m_scoreThisTurn << std::endl;
         }
         else {
             std::cout << "Invalid Input!" << std::endl;
@@ -60,8 +61,6 @@ void Turn::roll() {
     }
     else {
         m_scoreThisTurn += m_myDie.getDieValue();
-        std::cout << "Die: " << m_myDie.getDieValue()
-                  << " - Running score this turn: "
-                  << m_scoreThisTurn << std::endl;
+        std::cout << " - Running score this turn: " << m_myDie.getDieValue() << std::endl;
     }
 }
