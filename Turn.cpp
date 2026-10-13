@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Turn.h"
+#include "PDGame.h" //Step 8 from PDF
 
 Turn::Turn() {
     m_turnCount = 0;
@@ -8,14 +9,11 @@ Turn::Turn() {
     m_choice = '\0';
 }
 
-//Turn(&){
-//
-//}
-
 void Turn::takeTurn() {
     m_turnCount += 1;
-    std::cout << "\nTURN " << m_turnCount  << " - Game Score: " << std::endl;
-              // ISSUE: Turn object "part" needs access to m_gameScore in "whole"
+    std::cout << "\nTURN " << m_turnCount  << " - Game Score: " << m_parentGame->getGameScore() << std::endl;
+    // Step 9 from PDF, which fixes the issue below.
+    // ISSUE: Turn object "part" needs access to m_gameScore in "whole"
     while (!m_turnOver){
         std::cout << "roll or hold? (r/h): ";
         std::cin >> m_choice;
@@ -30,6 +28,10 @@ void Turn::takeTurn() {
             std::cout << "Invalid Input!" << std::endl;
         }
     }
+}
+
+void Turn::setParentGame(PDGame* parentGame) { //Step 6 from PDF.
+    m_parentGame = parentGame;
 }
 
 int Turn::getScoreThisTurn() const {

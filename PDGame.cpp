@@ -5,8 +5,13 @@
 PDGame::PDGame() {
     m_gameOver = false;
     m_gameScore = 0;
+    m_myTurn.setParentGame(this); //Step 7 from PDF.
     displayRules();
     playGame();
+}
+
+int PDGame::getGameScore() const{ //Step 2 from PDF.
+    return m_gameScore;
 }
 
 void PDGame::displayRules() {
